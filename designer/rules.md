@@ -1,7 +1,9 @@
 # FURNITURE DESIGN RULES
-Version 1.0
+
+Version 1.1
 
 ## R1. Material
+
 - Standard board: laminated chipboard (DSP), 18 mm thick (1.8 cm),
   sheet size 3660 x 2100 mm.
 - All parts are designed with 18 mm boards unless I say otherwise.
@@ -11,17 +13,29 @@ Version 1.0
   decor/pattern on the board (chipboard itself has no grain).
 
 ## R2. Cutting precision
-- All part dimensions must be whole millimetres. No decimals.
-- Never round individual parts. If any calculation gives a fraction
-  (e.g. 242.67 mm), do NOT decide alone. Ask me whether to INCREASE
-  or DECREASE the total width/height/depth, and show both options
-  (e.g. "800 -> 801 mm or 800 -> 798 mm").
+
+- This rule applies to BOARD SIZES: every board that is cut must
+  be whole millimetres. No decimals.
+- It does NOT apply to the spacing between shelves (see R15) or to
+  the depth rounding in R16.
+- Never round board sizes yourself. If a board size would be a
+  fraction (e.g. 392.67 mm), stop and ask me. Show only TWO options:
+  the nearest INCREASE and the nearest DECREASE of the total size
+  that make every board a whole mm, with the resulting board sizes.
+- Find both options with code (a loop over nearby sizes), not by
+  reasoning in text.
+- Recommend one of the two in one line, usually the one with the
+  smaller change.
+- Show only a short comparison, for example:
+  "1251 mm -> modules 393 mm (+1) | 1248 mm -> modules 392 mm (-2).
+  Recommended: 1251."
 - After my answer, recalculate all parts from the new total size and
-  confirm that every part is a whole mm.
+  confirm that every board is a whole mm.
 - Always tell me the original size and the adjusted size.
 - The board list shows only whole-mm values.
 
 ## R3. Drawings
+
 - Draw 2D views (front, side, top) with dimensions.
 - A 3D depiction is allowed as a technical plan drawing (line
   drawing, isometric or exploded view with part labels).
@@ -29,11 +43,13 @@ Version 1.0
   request them.
 
 ## R4. Visible vs hidden edges
+
 - For every part, mark each edge and face as VISIBLE or HIDDEN.
 - VISIBLE edges get edge banding ("sticker"). HIDDEN edges get none.
 - The board list shows, per part, which edges get banding.
 
 ## R5. Visible parts and grain direction
+
 - Identify parts visible from outside: side walls, doors, drawer
   fronts, top panel, front plinth, etc.
 - Visible parts have the best face outward.
@@ -42,33 +58,43 @@ Version 1.0
 - The board list shows the grain requirement for each part.
 
 ## R6. Final output: print-ready PDF
+
 When planning is finished, produce a PDF ready to print (A4, black
 and white, clear fonts) containing:
+
 1. Plan pages: 2D views with dimensions, plus the 3D plan drawing.
 2. Board list: one line per board type, in this format:
    X - Y - quantity
    Sizes in whole mm. Identical boards are merged into one line.
 
 Edge banding marks (drawn above the size number):
+
 - One line above a size = one edge of that dimension is banded.
 - Two lines above a size = both edges of that dimension are banded.
 - No line = no banding on that dimension.
 
 Grain:
+
 - X - Y: Y is the dimension that runs vertically when the board is
   installed.
 - Boards that need vertical grain (grain along Y) get an upward
   arrow at the end of their line.
 - No arrow = no grain requirement.
 
-Example (drawn in the PDF):
-        ===
-  764  -  560  -  2   (up arrow)
-  ---
+# Example (drawn in the PDF):
+
+Example: "764 - 560 - 2 (up arrow)" with ONE line above 764 and TWO
+lines above 560. Means: 2 boards, 764 x 560 mm. The 764 side has
+one banded edge, the 560 side has both edges banded, vertical grain.
 Means: 2 boards, 764 x 560 mm. The 764 side has one banded edge,
 the 560 side has both edges banded, vertical grain.
 
+- Boards of a different thickness (back board, thin drawer bottoms)
+  are listed in their own group below, with the thickness in the
+  group heading.
+
 ## R7. Doors and gaps
+
 - Default: doors are OVERLAY. They cover all walls, top and bottom
   of the body. Inset doors are used only if I explicitly request them.
 - Gap value is 3 mm or 4 mm. Ask me which one before designing doors.
@@ -82,20 +108,48 @@ the 560 side has both edges banded, vertical grain.
   direction (see R5).
 - State the chosen gap in the plan drawings and the board list notes.
 
+Stacked fronts, OVERLAY (doors or drawer fronts one above another,
+covering the walls):
+
+- The seam gap is taken from the UPPER front. The lower front keeps
+  its full height. The upper front is shorter by the gap.
+- Example: top section 550 mm, gap 3 mm -> top door 547 mm. The
+  main doors are unchanged.
+
+Stacked fronts, INSET (sitting inside the frame):
+
+- All gaps are equal. The gap to the walls, top and bottom, and the
+  seam gap between stacked fronts all use the same gap value.
+- Fronts in one stack are equal height:
+  (opening height - (N + 1) x gap) / N, where N = number of fronts.
+  The upper-front rule does NOT apply to inset fronts.
+- Example: opening 600 mm, 3 drawer fronts, gap 3 mm ->
+  (600 - 4 x 3) / 3 = 196 mm each.
+- Inset fronts side by side use the same logic horizontally:
+  (opening width - (N + 1) x gap) / N.
+- If an inset front size is a fraction, follow R2 (board sizes).
+- Inset doors in separate sections with a board between them: each
+  door keeps its own gap to that board, and the fronts are sized
+  per opening.
+
 ## R8. Drawers (front position)
+
 - If not specified, ask me: drawer fronts OUTSIDE the walls (overlay)
   or INSIDE the walls (inset)?
 - Inset drawers use the gap rule from R7.
 
 ## R9. Wardrobes
+
 - The top board sits INSIDE the side walls (between them).
 - Side walls run the full height of the wardrobe.
 
 ## R10. Drawer cabinets
+
 - If not specified, ask me: should the top board fully cover the
   walls, or sit inside them?
 
 ## R11. Plinth (furniture base)
+
 - The plinth is a narrow board that sits BETWEEN the main side walls,
   under the floor board. It is not individual feet or blocks.
 - Ask me: ONE plinth (front only, visible) or TWO plinths (front
@@ -112,8 +166,8 @@ the 560 side has both edges banded, vertical grain.
 - Plinth height is between 7 and 8 cm. Do not ask me, decide
   automatically:
   - Choose the height (whole mm, between 70 and 80 mm) that makes
-    every other part come out as a whole mm (see R2), e.g. equal
-    compartment, door and drawer heights.
+    every cut board come out as a whole mm (see R2), e.g. door
+    heights and drawer heights. Shelf spacing (R15) does not count.
   - If several heights work, use the one closest to 75 mm.
   - If no height between 70 and 80 mm works, ask me whether to
     INCREASE or DECREASE the total height (R2).
@@ -127,6 +181,7 @@ the 560 side has both edges banded, vertical grain.
   the other visible parts.
 
 ## R12. Drawer boxes (gap and bottom)
+
 - Drawer boxes need a gap from the frame walls (side walls, dividers
   and neighbouring drawers). For every piece with drawers, ask me
   what gap to use. Do not decide it automatically.
@@ -140,21 +195,28 @@ the 560 side has both edges banded, vertical grain.
   its own thickness noted.
 
 ## R13. Back side of furniture
-- Every piece gets a back cover board, listed as a separate board
+- Every body gets a back cover board, listed as a separate board
   and marked "BACK SIDE" in the board list and plan drawings.
-- The back board is applied on the rear face of the body and covers
-  the side walls, the floor board and the top board.
-- Width: the full outer width of the furniture (side wall to side
-  wall, including both walls). Example: outer width 125 cm, inner
-  width 121.4 cm -> back board width is 125 cm.
-- Height: from the underside of the floor board to the top face of
-  the top board, covering the thickness of both. The plinth is NOT
-  covered. Back height = total furniture height minus plinth height.
+  Separate bodies each get their own back board. One body gets one
+  back board over its full height (see R17).
+- The back board is applied on the rear face of the body. It is
+  2 mm smaller than the body in width and in height.
+- Width: outer width of the body - 2 mm.
+  Example: outer width 1250 mm -> back width 1248 mm.
+- Height:
+  - Body WITH a plinth: (body height - plinth height) - 2 mm.
+    The plinth is not covered.
+  - Body WITHOUT a plinth: body height - 2 mm.
+- Examples:
+  - Separate bodies: main 2000 mm with a 70 mm plinth -> 1248 x
+    1928 mm. Top body 550 mm, no plinth -> 1248 x 548 mm.
+  - One body of 2550 mm with a 70 mm plinth -> 1248 x 2478 mm.
 - Sizes are whole mm (see R2).
 - The back board is hidden: no banding (see R4).
 - Ask me for the back board thickness if I have not specified it.
 
 ## R14. Inner walls (dividers between sections)
+
 - Inner walls are vertical boards between the side walls that
   divide the furniture into sections. They are 18 mm thick (R1).
 - Decide per piece, no questions needed:
@@ -180,13 +242,73 @@ the 560 side has both edges banded, vertical grain.
   ask me which one to follow.
 - State in the notes which inner walls were set back by 18 mm.
 
+## R15. Shelves and spaces
+
+- "N shelves" in a module means N SPACES (compartments), not N
+  boards. A module with N spaces needs N-1 shelf boards.
+- Example: "6 shelves" = 6 spaces = 5 shelf boards.
+- All spaces in a module are equal in height:
+  (module inner height - (N-1) x 18 mm) / N.
+- Spacing decimals are allowed. A difference under 1 mm is not
+  visible, so do not ask me about it. Show spacing in drawings with
+  one decimal. The shelf boards themselves stay whole mm (R2).
+- State in the notes, e.g. "6 spaces, 5 shelf boards".
+
+## R16. Depth with overlay doors
+
+- The depth in my brief is the TOTAL depth, including overlay doors.
+- If the front is covered by overlay doors: side wall depth =
+  total depth - 18 mm (door thickness), rounded to the nearest
+  whole cm (10 mm). Do not ask me. This is an exception to R2.
+- Example: total 600 mm -> 600 - 18 = 582 -> side walls 580 mm.
+  Actual total depth = 580 + 18 = 598 mm.
+- If the result is exactly halfway between two cm values, ask me.
+- If there are no overlay doors (open front, or inset doors and
+  drawers): side wall depth = total depth.
+- Floor board, top board, shelves and inner walls take their depth
+  from the side walls (and R14 set-back).
+- State both the side wall depth and the actual total depth in the
+  notes.
+
+## R17. Stacked sections (one above another)
+- If the design has sections stacked vertically (e.g. main and top),
+  ask me: are they SEPARATE BODIES or ONE BODY? Do not guess. Skip
+  the question if the brief already says.
+
+SEPARATE BODIES (the upper section is its own box sitting on the
+lower one):
+- Each body has its own 2 side walls, floor board and top board.
+- Between the sections there are 2 boards: the top board of the
+  lower body and the floor board of the upper body.
+- Each body's height is the section height from the brief.
+- Each body gets its own back board (R13).
+- The plinth is only under the lowest body.
+- R9 and R14 apply to each body on its own.
+
+ONE BODY (the sections share the same side walls):
+- The side walls run the full height of all sections.
+- Between the sections there is ONE divider board (18 mm), like a
+  shelf. There is one floor board at the bottom and one top board.
+- The divider board counts as part of the lower section's height.
+  The upper section starts above it.
+- The body gets ONE back board over the full height (R13).
+- Inner walls (R14) of each section run between its own floor or
+  divider board and its own top or divider board.
+- Doors are per section (R7). Stacked overlay doors follow the
+  seam gap rule in R7.
+
+- State in the notes which option was used.
+
 ## GENERAL BEHAVIOUR
+
 - If a rule is unclear or two rules conflict, ask me before continuing.
-- Before drawing, list how each rule was applied to the design.
 - Ask drawer questions (R8, R10, R12) only if the design contains
   drawers. Ask door questions (R7) only if it contains doors.
 - Ask all required questions before starting the design, but only
   the ones that apply to this piece.
 - Do all calculations with code, not in your head.
-- Before the final PDF, recheck R1 to R14 one by one and show a
-  pass/fail list.
+- Before the final PDF, recheck R1 to R17. Show one compact list:
+  "OK" for rules that pass, and a short note only for rules that
+  failed or were applied in a special way (e.g. R14 set-back, R16
+  depth rounding).
+- Keep answers short.
