@@ -1,6 +1,6 @@
 # FURNITURE DESIGN RULES
 
-Version 1.1
+Version 1.2
 
 ## R1. Material
 
@@ -44,8 +44,19 @@ Version 1.1
 
 ## R4. Visible vs hidden edges
 
-- For every part, mark each edge and face as VISIBLE or HIDDEN.
-- VISIBLE edges get edge banding ("sticker"). HIDDEN edges get none.
+- An edge is VISIBLE if it can be seen from outside OR when doors
+  and drawers are open. Overlay doors do NOT make an edge hidden.
+- VISIBLE edges get edge banding. HIDDEN edges get none.
+- Front edge: the front edge of every board that faces the opening
+  is banded, even behind doors: side walls, floor board, top board,
+  inner walls, shelves.
+- Top edge of side walls: banded if nothing sits on top of them
+  (e.g. the side walls of the top body, R9). Hidden if another body
+  or board covers it (e.g. the main side walls under a separate
+  top body).
+- Hidden edges: edges that touch another board, the back board or
+  the floor, and all edges of back boards.
+- Doors and drawer fronts: all four edges banded.
 - The board list shows, per part, which edges get banding.
 
 ## R5. Visible parts and grain direction
@@ -175,8 +186,9 @@ Stacked fronts, INSET (sitting inside the frame):
   - State the chosen plinth height in the plan notes.
 - Plinth length = inner width between the side walls (flush between
   the walls). Whole mm (see R2).
-- Banding (see R4): the front plinth's visible long edge gets
-  banding. The back plinth gets no banding.
+- Banding (see R4): plinths get NO banding. The top edge touches the
+  floor board, the bottom edge touches the floor, and the short
+  ends touch the side walls, so all edges are hidden.
 - Grain (see R5): the front plinth follows the grain direction of
   the other visible parts.
 
@@ -199,18 +211,17 @@ Stacked fronts, INSET (sitting inside the frame):
   and marked "BACK SIDE" in the board list and plan drawings.
   Separate bodies each get their own back board. One body gets one
   back board over its full height (see R17).
-- The back board is applied on the rear face of the body. It is
-  2 mm smaller than the body in width and in height.
+- The back board is applied on the rear face of the body.
 - Width: outer width of the body - 2 mm.
-  Example: outer width 1250 mm -> back width 1248 mm.
+  Example: outer width 1251 mm -> back width 1249 mm.
 - Height:
-  - Body WITH a plinth: (body height - plinth height) - 2 mm.
-    The plinth is not covered.
+  - Body WITH a plinth: body height - plinth height. No extra
+    -2 mm.
   - Body WITHOUT a plinth: body height - 2 mm.
 - Examples:
-  - Separate bodies: main 2000 mm with a 70 mm plinth -> 1248 x
-    1928 mm. Top body 550 mm, no plinth -> 1248 x 548 mm.
-  - One body of 2550 mm with a 70 mm plinth -> 1248 x 2478 mm.
+  - Separate bodies: main 2000 mm with a 70 mm plinth -> 1249 x
+    1930 mm. Top body 550 mm, no plinth -> 1249 x 548 mm.
+  - One body of 2550 mm with a 70 mm plinth -> 1249 x 2480 mm.
 - Sizes are whole mm (see R2).
 - The back board is hidden: no banding (see R4).
 - Ask me for the back board thickness if I have not specified it.
@@ -271,12 +282,14 @@ Stacked fronts, INSET (sitting inside the frame):
   notes.
 
 ## R17. Stacked sections (one above another)
+
 - If the design has sections stacked vertically (e.g. main and top),
   ask me: are they SEPARATE BODIES or ONE BODY? Do not guess. Skip
   the question if the brief already says.
 
 SEPARATE BODIES (the upper section is its own box sitting on the
 lower one):
+
 - Each body has its own 2 side walls, floor board and top board.
 - Between the sections there are 2 boards: the top board of the
   lower body and the floor board of the upper body.
@@ -286,6 +299,7 @@ lower one):
 - R9 and R14 apply to each body on its own.
 
 ONE BODY (the sections share the same side walls):
+
 - The side walls run the full height of all sections.
 - Between the sections there is ONE divider board (18 mm), like a
   shelf. There is one floor board at the bottom and one top board.

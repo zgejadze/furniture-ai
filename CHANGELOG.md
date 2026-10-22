@@ -1,6 +1,11 @@
 # CHANGELOG
 
 ## Designer rules (designer/rules.md)
+- 1.2 (2026-10-22): from comparing with the real wardrobe plan. R4
+  edges visible with doors open are banded, front edges of side
+  walls, floor/top boards, inner walls and shelves always banded;
+  R11 plinth has no banding; R13 back height with a plinth is body
+  height minus plinth height (no extra -2 mm), examples corrected
 - 1.1 (2026-10-18): from the wardrobe test. R2 board sizes only, two
   options plus a recommendation; R6 example fixed and separate list
   for other thicknesses; R7 stacked fronts (overlay: upper front
