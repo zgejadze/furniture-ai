@@ -1,5 +1,5 @@
 # CUTTING OPTIMIZER RULES
-Version 1.0
+Version 1.1
 
 ## C1. Allowed sheet sizes (18 mm laminated DSP)
 - Only two sheet sizes exist: FULL sheet and HALF sheet.
@@ -21,16 +21,21 @@ Version 1.0
   A remainder bigger than half = 3 FULL.
 
 ## C3. Material price estimate
-- Use prices from prices.md. If a price is missing, ask me.
-- Half sheet price = full sheet price / 2.
-- Half sheet cutting fee = full sheet cutting fee / 2.
-- Do not ask me about half sheet prices. Calculate them.
+- MAIN MATERIAL PRICE: always ask me for the price of one full
+  18 mm sheet (3660 x 2100 mm) at the start of every estimate.
+  Do not take it from prices.md. Wait for my answer before
+  calculating any price.
+- Half sheet price = the price I give / 2.
+- All other prices (cutting, banding, HDF) come from prices.md.
+- Show the price I gave in the estimate, so it is clear which
+  price was used.
 - The estimate includes:
   - Full sheets x full sheet price
   - Half sheets x half sheet price
   - Cutting service: price per sheet x number of sheets
   - Edge banding (material + service): total metres from the banded
-    edges in the board list, plus 5% waste, x price per metre
+    edges in the board list, plus the banding waste percentage from
+    prices.md, rounded UP to a whole metre, x price per metre
   - HDF back board sheets x price (see C4)
   - Total
 - Label the result "approximate" and show the invoice date.

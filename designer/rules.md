@@ -1,6 +1,6 @@
 # FURNITURE DESIGN RULES
 
-Version 1.2
+Version 1.3
 
 ## R1. Material
 
@@ -233,15 +233,16 @@ Stacked fronts, INSET (sitting inside the frame):
 - Decide per piece, no questions needed:
   - If the front of the section is covered by overlay doors (R7):
     the inner wall runs the full depth of the side walls, flush
-    with the front. The door hides its front edge.
+    with the front. Its front edge is still banded (see Banding
+    below).
   - If the front of the section is NOT covered by doors (open
     section, or inset doors/drawers): the inner wall is SHORTER in
     depth by 18 mm. It is set back 18 mm from the front edge.
 - Inner wall height: from the floor board to the underside of the
   top board (or the full inner height between them).
-- Banding (R4): the front edge of an inner wall in an open section
-  is visible and gets banding. A hidden front edge (behind a
-  door) gets none.
+- Banding (R4): the front edge of every inner wall is banded. This
+  includes inner walls behind overlay doors, and walls that doors
+  attach to, because the edge is visible when the doors are open.
 - Section widths: (inner width - number of inner walls x 18 mm) /
   number of sections. If the result is a fraction, follow R2 and
   ask me INCREASE or DECREASE.
