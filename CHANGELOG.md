@@ -20,6 +20,10 @@
 - 1.0 (2026-10-18): baseline, rules R1 to R14
 
 ## Optimizer rules (optimizer/optimizer_rules.md)
+- 1.2 (2026-10-23): C7 standard output, one PDF with 18 mm sheet
+  maps (two per page) and calculations; C4 HDF is a cost line only,
+  no map and no savings search, 1 sheet unless the back boards do
+  not fit; input is spec.json only, with its field meanings defined
 - 1.1 (2026-10-23): C3 banding waste comes from prices.md and the
   banding length is rounded up to a whole metre; main sheet price is
   asked every time, half sheet price is half of that

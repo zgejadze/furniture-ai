@@ -1,5 +1,5 @@
 # CUTTING OPTIMIZER RULES
-Version 1.1
+Version 1.2
 
 ## C1. Allowed sheet sizes (18 mm laminated DSP)
 - Only two sheet sizes exist: FULL sheet and HALF sheet.
@@ -43,12 +43,18 @@ Version 1.1
   prices.md after real projects.
 - If prices are older than 6 months, warn me they may be outdated.
 
-## C4. Back boards (separate material)
+## C4. Back boards (HDF, not planned for now)
 - Back boards are HDF, 2.7 mm thick, sheet size 3660 x 2100 mm.
-- They are cut from HDF sheets only, never from the 18 mm sheets.
-  Plan them on their own layout.
-- Use as few HDF sheets as possible.
-- Ask me whether the full-or-half rule (C2) also applies to HDF.
+- Do NOT make a cutting map for HDF and do NOT look for savings on
+  it. How HDF is cut is not defined yet.
+- Number of HDF sheets: run a quick check in code on whether all
+  back boards fit on ONE sheet (sizes plus 3.2 mm kerf between
+  boards, rotation allowed for this check only).
+  - If they fit: use 1 sheet. Do NOT ask me.
+  - If they do not fit: stop and ask me how many HDF sheets to use.
+- In the estimate, show HDF as one cost line: number of sheets x
+  price from prices.md. Mark it "HDF not planned" in the notes.
+- Never place back boards on the 18 mm sheets.
 
 ## C5. Saw kerf and trim
 - Saw kerf: 3.2 mm. Leave 3.2 mm between neighbouring boards in the
@@ -83,10 +89,48 @@ Version 1.1
 - Never edit the design myself. I approve, then the change goes back
   to the Furniture Designer, which re-checks R1 to R14 and R2.
 
+## C7. Standard output file
+- Every run produces ONE A4 PDF named optimizer_result.pdf.
+- Do NOT reprint anything the Furniture Designer already prints:
+  no board list, no drawings, no door gaps, no plinth notes.
+- Content, in this order:
+  1. One header line: project name, date, sheet price I gave, the
+     designer rules version (from spec.json), and the versions of
+     the optimizer rules and prices.
+  2. Cutting maps for the 18 mm sheets: TWO sheets per A4 portrait
+     page, stacked one above the other. Draw every sheet at the
+     same scale, so a half sheet appears half as wide as a full
+     sheet. Number the sheets (Sheet 1, Sheet 2, ...). Show every
+     part with its size, the decor arrow on parts that must not
+     rotate, and mark the last sheet as FULL or HALF (C2). If the
+     number of sheets is odd, the last page has one map.
+  3. Calculation page: sheets, cutting, banding (planned metres,
+     waste percentage, rounded metres), HDF (cost line only, not
+     planned), total. Under it, the savings: option A (as designed)
+     next to option B (with savings), each suggestion with the mm
+     changed, the sheet saved and the money saved.
+- All numbers come from the same calculation run. Never retype
+  them by hand.
+- If I approve a suggestion and the design changes, produce a new
+  file with the suffix _v2 and keep the first one.
+- At the end, tell me the file to download, with no other text.
+
 ## GENERAL BEHAVIOUR
-- Input is the board list or spec.json from the Furniture Designer.
-- Boards marked with the upward arrow (vertical decor direction)
-  must not be rotated.
-- Output per sheet: a cutting map, then totals: full sheets, half
-  sheets, waste percentage and the price estimate.
+- The ONLY input is spec.json from the Furniture Designer. Do not
+  ask for the designer's PDF or board list.
+- Read spec.json like this:
+  - Parts with thickness 18 go to the 18 mm sheets (C1). Parts with
+    thickness 3 are back boards (C4).
+  - quantity = number of boards of that size.
+  - vertical_grain "yes" = the part must not rotate. Y is the
+    vertical side.
+  - banded_edges X and Y are the NUMBER of banded edges (0, 1 or 2)
+    of that dimension. Banded length of a part =
+    quantity x (X banded count x X + Y banded count x Y).
+  - Header data: project name and the designer rules version come
+    from spec.json. The date is today's date.
+- If a field is missing, or units is not mm, stop and ask me.
+- Parts with vertical_grain "yes" (the upward arrow in the
+  designer's PDF) must not be rotated.
+- Output follows C7 (one PDF, 18 mm sheet maps and calculations).
 - Do all layout and price calculations with code, not in your head.
